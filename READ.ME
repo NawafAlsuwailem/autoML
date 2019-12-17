@@ -1,0 +1,108 @@
+################
+###  AutoML  ###
+################
+
+AutoML is a simple, rather naive automated machine learning platform. It enable data scientists to
+examine their hypothesis on a given use case.
+
+The platform features data import, data understanding, exploratory data analysis, data pre-processing,
+modelling, and deployment. Each feature is explain below in more details.
+
+--------------
+1. Data Import
+--------------
+Objective:
+ Import data into the platform
+
+
+Features:
+ For this release, AutoML only accept CSV files. The data can be imported with its unique features.
+
+Required action(s):
+ - selected preferred dataset from local machine
+
+--------------
+2. Data Understanding
+--------------
+Objective:
+ This stage helps data analysts/scientists to study their data more closely by giving the mentioned information.
+
+Features:
+ Once the data is uploaded, AutoML shifts the user to the data understanding page where it display the following:
+    - data sample
+    - data shape
+    - feature type and sum of null values
+    - data description
+    - feature box plot for numeric columns, and histogram for categorical columns
+
+Required action(s):
+ - Unique columns are removed at this stage
+ - selection of target feature
+ - option to keep/remove outliers
+ - option to keep/deal-with null value
+
+--------------
+3. EDA
+--------------
+Objective:
+  This stage provides analysis of the data offering a more concise view on the data to data analysts/scientists
+
+Features:
+ One the user has selected the target feature and their preferences, AutoML shifts the user to the exploratory data analysis page where it display the following:
+    - converting categorical data into numerical form
+    - dealing with outliers
+    - dealing with null values
+    - data distribution per feature
+    - Feature importance
+    - Feature correlation
+
+Required action(s):
+- selection of modelling features
+
+--------------
+4. Data pre-processing
+--------------
+Objective:
+ In this stage, the selected features are preprocessed for modelling
+
+Features:
+ Once the features are selected, they will be preprocessed. Preprocessing includes:
+    - defining independent variables
+    - defining dependant variable
+    - apply one hot encoding on the independent variables
+    - splitting the data into training and testing sets
+    - scaling independent variables
+
+Required action(s):
+- N/A
+
+--------------
+5. Data Processing/Modelling
+--------------
+Objective:
+ This stage models the data and provide information for each model.
+
+Features:
+ Data modelling includes:
+    - grid search for the optimal hyper-parameter
+    - modelling the data
+    - providing the baseline
+    - providing a classification report
+    - recommendation
+    - save model
+
+Required action(s):
+- option to select model to be deployed.
+
+--------------
+6. Deployment
+--------------
+Objective:
+ Deploy model to be used for prediction - inference
+
+Features:
+ - load model
+ - prediction
+
+Required action(s):
+- Post request to model API

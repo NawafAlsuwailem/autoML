@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>AutoML</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<style>
+    body {
+        font:  15px/1.8 Lato, sans-serif;
+        color: #777;
+    }
+    /* The navigation bar */
+    .navbar {
+        overflow: hidden;
+        background-color: #333;
+        {#position: fixed; /* Set the navbar to fixed position */#}
+        top: 0; /* Position the navbar at the top of the page */
+        width: 100%; /* Full width */
+        border: 0;
+        border-radius: 0;
+        font-size: 11px !important;
+        letter-spacing: 4px;
+        opacity: 0.9;
+    }
+
+    /* Links inside the navbar */
+    .navbar p {
+        font-weight: bold;
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        margin-top: 5px ;
+        padding: 10px 10px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+    .container {
+        margin-top: 20px;
+        padding: 80px;
+        width: 90%;
+    }
+    #success_text{
+        color: #3c763d;
+    }
+
+    .main-menu {
+        list-style-type: none;
+        margin-right: 10px;
+        float: right;
+        overflow: hidden;
+        background-color: #333;
+        top: 0; /* Position the navbar at the top of the page */
+        border: 0;
+        border-radius: 0;
+        font-size: 12px !important;
+        letter-spacing: 4px;
+    }
+
+    .main-menu li {
+        float: left;
+    }
+
+    .main-menu li a {
+        text-decoration: none;
+        float: right;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        margin-top: 5px ;
+        padding: 10px 10px;
+        text-decoration: none;
+        font-size: 15px;
+    }
+    .main-menu li a:hover {
+        background-color: #111;
+    }
+
+.progressbar {
+  counter-reset: step;
+}
+.progressbar li {
+  list-style: none;
+  display: inline-block;
+  width: 22.5%;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.progressbar li:before {
+  content: counter(step);
+  counter-increment: step;
+  width: 30px;
+  height: 30px;
+  line-height : 30px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  display: block;
+  text-align: center;
+  margin: 0 auto 10px auto;
+  background-color: #fff;
+}
+.progressbar li:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #ddd;
+  top: 15px;
+  left: -50%;
+  z-index : -1;
+}
+.progressbar li:first-child:after {
+  content: none;
+}
+.progressbar li.active {
+  color: green;
+}
+.progressbar li.active:before {
+  border-color: green;
+}
+.progressbar li.active + li:after {
+  background-color: green;
+}
+</style>
+
+<body>
+<div class="navbar">
+    <p>AutoML</p>
+    <ul class="main-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</div>
+
+
+<div class="container">
+    {% block content %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

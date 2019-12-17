@@ -1,0 +1,175 @@
+{% extends 'static/header.html' %}
+{% block content %}
+    <style>
+        select{
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        ul.tab li a:focus, ul.tab li a.active {
+            background-color: #ccc;
+        }
+
+        /* add this to the CSS */
+        .tabcontent.active {
+            display: block;
+        }
+
+        .center {
+            margin: 15px auto;
+            padding: 15px;
+            width: 60%;
+            alignment: center;
+            border: 1px solid #ccc;
+        }
+        #FeatureCorr {
+            width: 100%;
+        }
+        select{
+            min-width: 200px;
+            border-radius: 0;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+    </style>
+
+    <script>
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <ul class="progressbar">
+        <li class="active">Data Import</li>
+        <li class="active">Data Understanding</li>
+        <li>Exploratory Data Analysis</li>
+        <li>Data Modelling</li>
+    </ul>
+
+    <h3 id="success_text" style="font-weight: bold">Data Understanding</h3>
+    <hr>
+
+    <h4 style="font-weight: bold">Preferences</h4>
+    <form name="target_feature" action="{{name}}" method='POST'>
+        <div  style="padding: 15px" class="tab">
+            <div class="float-left">
+                <h5>Select dependant variable</h5>
+                <select name="target_feature" method="GET" action="/">
+                    {% for column in columns %}
+                        <option value="{{ column }}">{{ column }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="float-left">
+                <h5>Outliers</h5>
+                <select name="outlier" method="GET" action="/">
+                    <option value="keep">Keep outliers</option>
+                    <option value="remove">Remove outliers</option>
+                </select>
+            </div>
+            <div>
+                <h5>Null Values</h5>
+                <select name="null" method="GET" action="/">
+                    <option value="remove">Exclude null values</option>
+                    <option value="keep">Assign to Mean and Mode</option>
+                </select>
+            </div>
+            <button style="background-color: #2e6da4; margin-right: 10px; float:right; color: white;" type="submit">Continue</button>
+        </div>
+    </form>
+    <br>
+
+    <!-- Tab links -->
+    <div class="tab">
+        <button class="tablinks active" onclick="openCity(event, 'General')">General</button>
+        <button class="tablinks" onclick="openCity(event, 'Feature')">Feature</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="General" class="tabcontent active">
+        <h3>General</h3>
+
+        <h4>{{name}}</h4>
+        {{data| safe}}
+
+        <h4 style="font-weight: bold">Data Shape</h4>
+        <p>Number of rows: {{ shape[0] }}</p>
+        <p>Number of Columns: {{ shape[1] }}</p>
+
+        <h4 style="font-weight: bold">Data Information</h4>
+        {{data_information | safe}}
+        <h4 style="font-weight: bold">Data Description</h4>
+        {{data_describe | safe}}
+    </div>
+
+    <div id="Feature" class="tabcontent">
+        <h3>Feature</h3>
+        {% for plot  in plots  %}
+            <div class="row">
+                <div class="center">
+                    <h5 style="font-weight: bold">{{ plot[0] }}</h5>
+                    <div class="{{ plot[0] }}" id="{{plot[0]}}">
+                        <script>
+                            var graphs = {{ plot[1] | safe}};
+                            Plotly.plot('{{plot[0]}}',graphs,{});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+
+
+

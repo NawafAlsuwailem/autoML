@@ -1,0 +1,288 @@
+{% extends 'static/header.html' %}
+{% block content %}
+    <style>
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+        .container2 {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container2 input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #fbfbfb;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .container2:hover input ~ .checkmark {
+            background-color: #e0e0e0;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .container2 input:checked ~ .checkmark {
+            background-color: #f3ea22;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .container2 input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .container2 .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+        select{
+            padding: 8px 16px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        ul.tab li a:focus, ul.tab li a.active {
+            background-color: #ccc;
+        }
+
+        /* add this to the CSS */
+        .tabcontent.active {
+            display: block;
+        }
+
+        .center {
+            margin: 15px auto;
+            padding: 15px;
+            width: 70%;
+            alignment: center;
+            border: 1px solid #ccc;
+        }
+        #FeatureCorr {
+            width: 100%;
+        }
+        select{
+            min-width: 200px;
+            border-radius: 0;
+            border: 1px solid #ccc;
+            min-height: 100px;
+        }
+        .center1{
+            width: 100%;
+        }
+    </style>
+    <script>
+        function openCity(evt, cityName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <ul class="progressbar">
+        <li class="active">Data Import</li>
+        <li class="active">Data Understanding</li>
+        <li class="active">Exploratory Data Analysis</li>
+        <li>Data Modelling</li>
+    </ul>
+    <h3 id="success_text" style="font-weight: bold">Exploratory Data Analysis</h3>
+    <hr>
+    <h4 style="font-weight: bold">Preferences</h4>
+    <form name="cols" action="{{name}}" method='POST'>
+        <div  style="padding: 15px" class="tab">
+            <div class="float-left">
+                <h5><label>Test Size</label></h5>
+                <select name="test_size">
+                    <option value="2">2</option>
+                    <option value="2.5">2.5</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="float-left">
+                <label>Feature Selection</label>
+                {% for col in columns %}
+
+                    {% if col in feature_by_importance %}
+                        <label style="font-weight: normal" class="container2">{{col}} (Recommended)
+                        <input type="checkbox" checked="checked" value="{{ col }}" name="check_list">
+                        <span class="checkmark"></span>
+                    {% else %}
+                        <label style="font-weight: normal" class="container2">{{col}}
+                        <input type="checkbox" value="{{ col }}" name="check_list">
+                        <span class="checkmark"></span>
+                    {% endif %}
+                </label>
+
+                {% endfor %}
+            </div>
+            <button style="background-color: #2e6da4; margin-right: 10px; float:right; color: white;" type="submit">Continue</button>
+        </div>
+    </form>
+
+    <br>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openCity(event, 'data_dists')">Data Distribution</button>
+        <button class="tablinks" onclick="openCity(event, 'feature_importance')">Feature Importance</button>
+        <button class="tablinks" onclick="openCity(event, 'feature_corr')">Feature Correlation</button>
+    </div>
+
+    <!-- Tab content -->
+    <div id="data_dists" class="tabcontent active">
+        <h3>Data Distribution</h3>
+
+        {% for plot  in data_dists  %}
+            <div class="row">
+                <div class="center">
+                    <h5 style="font-weight: bold">{{ plot[0] }}</h5>
+                    <div class="{{ plot[0] }}" id="{{plot[0]}}">
+                        <script>
+                            var graphs = {{ plot[1] | safe}};
+                            Plotly.plot('{{plot[0]}}',graphs,{});
+                        </script>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Tab content -->
+    <div id="feature_importance" class="tabcontent">
+        <h3>Feature Importance</h3>
+        <br>
+        <div style="alignment: center;"> {{feature_impor_details | safe}} </div>
+        <br>
+        <div class="row">
+            <div class="center">
+                <div class="feature_import_chart" id="feature_import_chart">
+                    <script>
+                        var graphs = {{ feature_import_chart | safe}};
+                        Plotly.plot('feature_import_chart',graphs,{});
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tab content -->
+    <div id="feature_corr" class="tabcontent">
+    <h3>Feature Correlation</h3>
+    <br>
+    <div>
+        <div class="center">
+            <h5>Heatmap</h5>
+            <div class="feature_corr_heatmap" id="feature_corr_heatmap">
+                <script>
+                    var graphs = {{ heatmap | safe}};
+                    Plotly.plot('feature_corr_heatmap',graphs,{});
+                </script>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div>
+        <div class="center">
+            <h5>Scatter Matrix</h5>
+            <div class="feature_corr_scatter" id="feature_corr_scatter">
+                <script>
+                    var graphs = {{ scatter_matrix | safe}};
+                    Plotly.plot('feature_corr_scatter',graphs,{});
+                </script>
+            </div>
+        </div>
+        {#            <div class="parallel_categories" id="parallel_categories">#}
+        {#                <script>#}
+        {#                    var graphs = {{ parallel_categories | safe}};#}
+        {#                    Plotly.plot('parallel_categories',graphs,{});#}
+        {#                </script>#}
+        {#            </div>#}
+        {#        </div>#}
+    </div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,17 @@
+{% extends 'static/header.html' %}
+{% block content %}
+      <ul class="progressbar">
+        <li class="active">Data Import</li>
+        <li>Data Understanding</li>
+        <li>Exploratory Data Analysis</li>
+       <li>Data Modelling</li>
+      </ul>
+    <h3 style="font-weight: bold" id="success_text">Data Import</h3>
+    <hr>
+    <h4 >Upload new File</h4>
+    <form method=post enctype=multipart/form-data>
+        <input type=file name=file>
+        <input type=submit value=Upload>
+    </form>
+    {{ message }}
+{% endblock %}
