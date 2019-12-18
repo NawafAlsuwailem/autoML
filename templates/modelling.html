@@ -10,7 +10,6 @@
             text-align: left;
             outline: none;
             font-size: 15px;
-        {#border: 1px solid #ccc;#}
         }
 
         .collapsible .active, .collapsible:hover {
@@ -52,58 +51,67 @@
         <li class="active">Data Understanding</li>
         <li class="active">Exploratory Data Analysis</li>
         <li class="active">Data Modelling</li>
+    <li>Deployment</li>
     </ul>
     <h3 style="font-weight: bold" id="success_text">Data Modelling</h3>
     <hr>
 
+    <form name="model_name" action="{{name}}" method='POST'>
 
-    {% if recommended_model == "ann" %}
-        <button class="collapsible">Artificial Neural Network <label class="recommended">Recommended</label></button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">Artificial Neural Network</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ ann_report | safe }}</p>
-        </div>
-        <button class="collapsible">K Nearest Neighbors</button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">K Nearest Neighbors</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ knn_report | safe }}</p>
-        </div>
+        {% if recommended_model == "ann" %}
+            <button type="button"  class="collapsible">Artificial Neural Network <label class="recommended">Recommended</label></button>
+            <div style="background-color: aliceblue; margin: 10px;" class="content">
+                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ ann_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="ann" name="model_name"  type="submit">Deploy</button>
+            </div>
+            <button type="button"  class="collapsible">K Nearest Neighbors</button>
+            <div style="background-color: aliceblue; margin: 10px;" class="content">
+                <label style="margin-top: 15px">K Nearest Neighbors</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ knn_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="knn" name="model_name"  type="submit">Deploy</button>
+            </div>
+        {% elif recommended_model == "knn" %}
+            <button type="button" class="collapsible">K Nearest Neighbors <label class="recommended">Recommended</label></button>
+            <div style="background-color: aliceblue; margin: 10px; " class="content">
+                <label style="margin-top: 15px">K Nearest Neighbors</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ knn_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="knn" name="model_name"  type="submit">Deploy</button>
+            </div>
+            <button  type="button" class="collapsible">Artificial Neural Network </button>
+            <div style="background-color: aliceblue; margin: 10px; " class="content">
+                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ ann_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="ann" name="model_name"  type="submit">Deploy</button>
+            </div>
 
-    {% elif recommended_model == "knn" %}
-        <button class="collapsible">K Nearest Neighbors <label class="recommended">Recommended</label></button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">K Nearest Neighbors</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ knn_report | safe }}</p>
-        </div>
-        <button class="collapsible">Artificial Neural Network </button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">Artificial Neural Network</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ ann_report | safe }}</p>
-        </div>
-    {% else %}
-        <button class="collapsible">Artificial Neural Network</button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">Artificial Neural Network</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ ann_report | safe }}</p>
-        </div>
-        <button class="collapsible">K Nearest Neighbors</button>
-        <div style="background-color: aliceblue; margin: 10px;" class="content">
-            <label style="margin-top: 15px">K Nearest Neighbors</label>
-            <hr style="margin-bottom: 5px;  margin-top: 7px;">
-            <p>Baseline: {{ baseline | safe }}</p>
-            <p>Classification report: {{ knn_report | safe }}</p>
-        </div>
-    {% endif %}
+        {% else %}
+            <button type="button"  class="collapsible">Artificial Neural Network</button>
+            <div style="background-color: aliceblue; margin: 10px;" class="content">
+                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ ann_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="ann" name="model_name"  type="submit">Deploy</button>
+            </div>
+            <button type="button"  class="collapsible">K Nearest Neighbors</button>
+            <div style="background-color: aliceblue; margin: 10px; " class="content">
+                <label style="margin-top: 15px">K Nearest Neighbors</label>
+                <hr style="margin-bottom: 5px;  margin-top: 7px;">
+                <p>Baseline: {{ baseline | safe }}</p>
+                <p>Classification report: {{ knn_report | safe }}</p>
+                <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="knn" name="model_name"  type="submit">Deploy</button>
+            </div>
+        {% endif %}
+    </form>
 
     <script>
         var coll = document.getElementsByClassName("collapsible");

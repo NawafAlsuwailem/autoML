@@ -25,7 +25,7 @@ def get_ann(X_train, y_train):
 
 def get_knn(X_train, y_train):
     knn_params = {
-        'n_neighbors': [5, 15, 25, 40],
+        'n_neighbors': [5, 9, 15, 20, 40],
         'weights': ['uniform', 'distance'],
         'metric': ['euclidean', 'manhattan']}
     knn_gridsearch = GridSearchCV(KNeighborsClassifier(),

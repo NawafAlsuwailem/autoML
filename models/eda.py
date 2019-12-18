@@ -27,7 +27,7 @@ def get_scatter_matrix(dataframe, target_feature):
     fig.update_layout(
         font=dict(
             family="Courier New, monospace",
-            size=5,
+            size=2,
             color="#7f7f7f"
         )
     )

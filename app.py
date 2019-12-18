@@ -1,3 +1,5 @@
+import pickle
+
 from flask import Flask,render_template, flash, request, redirect, url_for, send_from_directory
 import os
 from werkzeug.utils import secure_filename
@@ -127,7 +129,7 @@ def eda(filename, target_feature, outlier, null):
                                 ))
 
 
-@app.route("/modelling/<filename>", methods=['GET'])
+@app.route("/modelling/<filename>", methods=['GET', 'POST'])
 def modelling(filename):
     if request.method == "GET":
         selected_features = session.get('selected_features')
@@ -181,17 +183,59 @@ def modelling(filename):
         knn_report = get_classification_report(y_test, knn_ypredict)
 
         ann_filename = 'ann.sav'
-        joblib.dump(ann, "ml_models/"+ann_filename)
+        knn_filename = 'knn.sav'
 
+        # session["ann_filename"] = ann_filename
+        # session["knn_filename"] = knn_filename
+        # try:
+        #     joblib.dump(ann, "ml_models/"+ann_filename)
+        #     joblib.dump(ann, "ml_models/"+knn_filename)
+        #
+        # except:
+        #     pass
         return render_template("modelling.html",
                                baseline=baseline.to_html(),
                                ann_report=ann_report.to_html(),
                                knn_report=knn_report.to_html(),
                                recommended_model=recommended_model,
                                )
+    else:
+        model_name = request.form.get("model_name")
+        return redirect(url_for('deploy',
+                                model_name=model_name,
+                                ))
 
 
+@app.route("/deploy/<model_name>", methods=['GET', 'POST'])
+def deploy(model_name):
+    if request.method == "GET":
+        selected_features = session.get('selected_features')
+        return render_template("deployment.html",
+                               selected_features=selected_features,
+                               )
+    else:
 
+        # selected_features = session.get('selected_features')
+        # to_predict = pd.DataFrame(columns=selected_features)
+        # for feature in selected_features:
+        #     value = request.form.get(feature)
+        #     to_predict.append(value)
+
+        # print(to_predict)
+        # print(model_name)
+        # ann_filename = session.get("ann_filename")
+        # knn_filename = session.get("knn_filename")
+        # if model_name == "ann":
+        #     loaded_model = pickle.load(open("ml_models/"+ann_filename, 'rb'))
+        # else:
+        #     loaded_model = pickle.load(open("ml_models/"+knn_filename, 'rb'))
+
+
+        # print(loaded_model)
+        # result = loaded_model.score(to_predict)
+        # print(result)
+
+        return render_template("deployment.html")
 """
     Run app
 """

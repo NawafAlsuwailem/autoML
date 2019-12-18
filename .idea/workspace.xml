@@ -2,8 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7eb462bc-bb37-43f6-aa3c-f42e5614fa9a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/UPLOAD_FOLDER/totalUsers.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ml_models/knn.sav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/deployment.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/READ.ME" beforeDir="false" afterPath="$PROJECT_DIR$/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ml_models/ann.sav" beforeDir="false" afterPath="$PROJECT_DIR$/ml_models/ann.sav" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/eda.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/eda.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/modelling.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/modelling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/data_understanding.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/data_understanding.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/eda.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/eda.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/modelling.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/modelling.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/static/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/static/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/upload.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/upload.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,8 +30,8 @@
       <list>
         <option value="Flask Main" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -28,8 +39,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1UZUyl2VrVk6zTIVKz0ntwpt67v" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -155,6 +169,9 @@
       <module name="mysite" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -174,6 +191,9 @@
       <module name="mysite" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/models" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -257,7 +277,8 @@
       <workItem from="1576187778449" duration="45811000" />
       <workItem from="1576434550362" duration="92000" />
       <workItem from="1576434921071" duration="205000" />
-      <workItem from="1576476492299" duration="51000000" />
+      <workItem from="1576476492299" duration="52435000" />
+      <workItem from="1576649211539" duration="9490000" />
     </task>
     <servers />
   </component>
@@ -269,15 +290,20 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/mysite$mysite.coverage" NAME="mysite Coverage Results" MODIFIED="1576130490770" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/mysite$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1576596456292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/mysite$Flask__app_py_.coverage" NAME="Flask (app.py) Coverage Results" MODIFIED="1576675912971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/mysite$Preprocessor.coverage" NAME="Preprocessor Coverage Results" MODIFIED="1575565270467" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
     <SUITE FILE_PATH="coverage/mysite$eda__1_.coverage" NAME="eda (1) Coverage Results" MODIFIED="1576081072930" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
   </component>
