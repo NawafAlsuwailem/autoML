@@ -59,9 +59,9 @@
     <form name="model_name" action="{{name}}" method='POST'>
 
         {% if recommended_model == "ann" %}
-            <button type="button"  class="collapsible">Artificial Neural Network <label class="recommended">Recommended</label></button>
+            <button type="button"  class="collapsible">Random Forest <label class="recommended">Recommended</label></button>
             <div style="background-color: aliceblue; margin: 10px;" class="content">
-                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <label style="margin-top: 15px">Random Forest</label>
                 <hr style="margin-bottom: 5px;  margin-top: 7px;">
                 <p>Baseline: {{ baseline | safe }}</p>
                 <p>Classification report: {{ ann_report | safe }}</p>
@@ -84,9 +84,9 @@
                 <p>Classification report: {{ knn_report | safe }}</p>
                 <button style="background-color: #2e6da4; margin-bottom: 10px;  margin-right: 10px; float:right; color: white;" value="knn" name="model_name"  type="submit">Deploy</button>
             </div>
-            <button  type="button" class="collapsible">Artificial Neural Network </button>
+            <button  type="button" class="collapsible">Random Forest </button>
             <div style="background-color: aliceblue; margin: 10px; " class="content">
-                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <label style="margin-top: 15px">Random Forest</label>
                 <hr style="margin-bottom: 5px;  margin-top: 7px;">
                 <p>Baseline: {{ baseline | safe }}</p>
                 <p>Classification report: {{ ann_report | safe }}</p>
@@ -94,9 +94,9 @@
             </div>
 
         {% else %}
-            <button type="button"  class="collapsible">Artificial Neural Network</button>
+            <button type="button"  class="collapsible">Random Forest</button>
             <div style="background-color: aliceblue; margin: 10px;" class="content">
-                <label style="margin-top: 15px">Artificial Neural Network</label>
+                <label style="margin-top: 15px">Random Forest</label>
                 <hr style="margin-bottom: 5px;  margin-top: 7px;">
                 <p>Baseline: {{ baseline | safe }}</p>
                 <p>Classification report: {{ ann_report | safe }}</p>

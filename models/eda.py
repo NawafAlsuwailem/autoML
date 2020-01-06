@@ -34,6 +34,7 @@ def get_scatter_matrix(dataframe, target_feature):
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
     return graphJSON
 
+
 def get_parallel_categories(dataframe, target_feature):
     try:
         fig = px.parallel_categories(dataframe, color=target_feature,

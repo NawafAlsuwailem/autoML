@@ -9,6 +9,8 @@ from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
 
+# Import the model we are using
+from sklearn.ensemble import RandomForestRegressor
 
 def get_ann(X_train, y_train):
     numberOfColumns = X_train.shape[1]
@@ -22,10 +24,17 @@ def get_ann(X_train, y_train):
     classifier.fit(X_train, y_train, batch_size=10, nb_epoch=1)
     return classifier
 
+def get_rf(X_train, y_train):
+    # Instantiate model with 1000 decision trees
+    rf = RandomForestRegressor(n_estimators=100, random_state=42)
+    # Train the model on training data
+    rf.fit(X_train, y_train)
+    return rf
+
 
 def get_knn(X_train, y_train):
     knn_params = {
-        'n_neighbors': [5, 9, 15, 20, 40],
+        'n_neighbors': [5, 40],
         'weights': ['uniform', 'distance'],
         'metric': ['euclidean', 'manhattan']}
     knn_gridsearch = GridSearchCV(KNeighborsClassifier(),

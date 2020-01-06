@@ -158,7 +158,7 @@ def modelling(filename):
         X_train, X_test = apply_standard_scaling(X_train, X_test)
 
         # classifier
-        ann = get_ann(X_train, y_train)
+        ann = get_rf(X_train, y_train)
         knn = get_knn(X_train, y_train)
 
         # classifier info
@@ -214,26 +214,6 @@ def deploy(model_name):
                                selected_features=selected_features,
                                )
     else:
-
-        # selected_features = session.get('selected_features')
-        # to_predict = pd.DataFrame(columns=selected_features)
-        # for feature in selected_features:
-        #     value = request.form.get(feature)
-        #     to_predict.append(value)
-
-        # print(to_predict)
-        # print(model_name)
-        # ann_filename = session.get("ann_filename")
-        # knn_filename = session.get("knn_filename")
-        # if model_name == "ann":
-        #     loaded_model = pickle.load(open("ml_models/"+ann_filename, 'rb'))
-        # else:
-        #     loaded_model = pickle.load(open("ml_models/"+knn_filename, 'rb'))
-
-
-        # print(loaded_model)
-        # result = loaded_model.score(to_predict)
-        # print(result)
 
         return render_template("deployment.html")
 """
